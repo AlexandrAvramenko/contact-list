@@ -21,23 +21,23 @@ const userReducer = (state = initialState, action: UserAction): UserState => {
     switch (action.type) {
         case UserActionTypes.GET_USERS:
             return {
-                users: action.payload, error: null, user: userDefaultValue
+                ...state, users: action.payload
             };
         case UserActionTypes.ERROR_USERS:
             return {
-                users: [], error: action.payload, user: userDefaultValue
+                ...state, error: action.payload
             };
         case UserActionTypes.GET_USER:
             return {
-                users: [], error: null, user: action.payload
+                ...state, user: action.payload
             };
         case UserActionTypes.REMOVE_USER:
             return {
-                users: state.users.filter(user => user.id !== action.payload), error: null, user: userDefaultValue
+                ...state, users: state.users.filter(user => user.id !== action.payload)
             }
         case UserActionTypes.UPDATE_USER:
             return {
-                users: [], error: null, user: action.payload
+                ...state, user: action.payload
             }
         default:
             return state
